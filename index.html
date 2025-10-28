@@ -135,7 +135,7 @@
             border-radius: 12px;
             transition: all 0.3s ease;
             overflow: hidden;
-            height: 100%; /* Makes cards in a grid the same height */
+            /* Removed fixed height, flexbox will handle alignment */
         }
          .feature-card:hover {
             transform: translateY(-8px);
@@ -229,6 +229,19 @@
             border: 1px solid #1f3a61;
             display: inline-block; /* Make it wrap content */
             margin-top: 0.25rem;
+        }
+
+        /* AI Text Icon Style */
+        .ai-icon-text {
+            font-size: 3rem; /* Adjust size as needed */
+            font-weight: bold;
+            color: var(--brand-accent);
+            line-height: 1;
+            width: 4rem; /* Match SVG width */
+            height: 4rem; /* Match SVG height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     </style>
 </head>
@@ -335,21 +348,22 @@
                         <div class="text-center">
                             <h3 class="text-2xl font-semibold text-brand-light-grey mb-6 fade-in-up delay-200">1. Your Activity Sources</h3>
                         </div>
-                        <div class="flex flex-col md:flex-row justify-center gap-8 w-full max-w-6xl">
+                        <!-- Added md:items-stretch to make boxes equal height on medium screens and up -->
+                        <div class="flex flex-col md:flex-row justify-center gap-8 w-full max-w-6xl md:items-stretch">
                             <!-- Box 1: PCs -->
-                            <div class="feature-card flex-1 p-6 text-center fade-in-up delay-300">
-                                <svg class="w-16 h-16 mx-auto text-brand-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            <div class="feature-card flex-1 p-6 text-center fade-in-up delay-300 flex flex-col"> <!-- Added flex flex-col -->
+                                <svg class="w-16 h-16 mx-auto text-brand-accent mb-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                                 <h4 class="text-xl font-semibold mb-2 text-brand-light-grey">30 Employee PCs (Beta)</h4>
-                                <p class="text-brand-grey">
+                                <p class="text-brand-grey flex-grow"> <!-- Added flex-grow -->
                                     Tiny, silent "helpers" will be placed on each PC. They invisibly note all important activity: logins, local file changes, website visits, and new software.
                                 </p>
                             </div>
                             
                             <!-- Box 2: NAS -->
-                            <div class="feature-card flex-1 p-6 text-center fade-in-up delay-500">
-                                <svg class="w-16 h-16 mx-auto text-brand-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path></svg>
+                            <div class="feature-card flex-1 p-6 text-center fade-in-up delay-500 flex flex-col"> <!-- Added flex flex-col -->
+                                <svg class="w-16 h-16 mx-auto text-brand-accent mb-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path></svg>
                                 <h4 class="text-xl font-semibold mb-2 text-brand-light-grey">2 NAS File Servers</h4>
-                                <p class="text-brand-grey">
+                                <p class="text-brand-grey flex-grow"> <!-- Added flex-grow -->
                                     Your main file servers will be configured to send a secure "note" to the Central Hub every time a shared file is accessed, modified, or deleted.
                                 </p>
                             </div>
@@ -365,7 +379,7 @@
                         <div class="w-full max-w-3xl text-center">
                             <h3 class="text-2xl font-semibold text-brand-light-grey mb-6 fade-in-up delay-700">2. The Secure Analysis Hub</h3>
                             <div class="feature-card hub-card p-8 shadow-2xl fade-in-up delay-1000">
-                                <svg class="w-20 h-20 mx-auto text-brand-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m-2 6h2M7 7l1.414-1.414M17 7l-1.414-1.414M7 17l1.414 1.414M17 17l-1.414 1.414M12 12c-3.314 0-6-2.686-6-6s2.686-6 6-6 6 2.686 6 6-2.686 6-6 6z"></path></svg>
+                                <svg class="w-20 h-20 mx-auto text-brand-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.75 3.75v16.5h16.5V3.75H3.75zM9 9h6m-6 6h6m-6-3h6m3 3h3m-3-3h3m-3-3h3m-3-3h3m-6 0h.008v.008H9V9zm0 3h.008v.008H9v-.008zm0 3h.008v.008H9v-.008z"></path></svg>
                                 <h4 class="text-2xl font-bold mb-2 text-white">Your Central "Alpha" Server</h4>
                                 <p class="text-brand-grey text-lg">
                                     This is the "brain" of the entire system, built securely by ESCOSS. It runs 24/7 to collect, index, and analyze all the log data. It's the smart guard that spots patterns and flags important events.
@@ -663,7 +677,7 @@
                             <svg class="w-20 h-20 mx-auto text-brand-accent mb-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
                             <h3 class="text-2xl font-semibold mb-3 text-brand-light-grey">100% Private & Secure</h3>
                             <p class="text-brand-grey text-lg">
-                                All information <span class="font-semibold text-white">never leaves your network.</span> All logs are stored on your own "Alpha" server. The system <span class="font-semibold text-white">does not read the *contents*</span> of your files. Orchid Scientific's data remains 100% yours.
+                                All information <span class="font-semibold text-white">never leaves your network.</span> All logs are stored on your own "Alpha" server. The system <span class="font-semibold text-white">does not read the contents</span> of your files. Orchid Scientific's data remains 100% yours.
                             </p>
                         </div>
                         
@@ -738,8 +752,9 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
                         
                         <div class="feature-card bg-brand-dark-lighter p-6 text-center fade-in-up delay-300">
-                            <svg class="w-16 h-16 mx-auto text-brand-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m-2 6h2M7 7l1.414-1.414M17 7l-1.414-1.414M7 17l1.414 1.414M17 17l-1.414 1.414M12 12c-3.314 0-6-2.686-6-6s2.686-6 6-6 6 2.686 6 6-2.686 6-6 6z"></path></svg>
-                            <h4 class="text-xl font-semibold mb-2 text-brand-accent">ML-Based Applications</h4>
+                           <!-- Replaced SVG with styled text -->
+                           <div class="ai-icon-text mx-auto mb-4">AI</div>
+                            <h4 class="text-xl font-semibold mb-2 text-brand-accent">AI-ML-Based Applications</h4>
                             <p class="text-brand-grey">Building intelligent systems that learn from your data to automate tasks and find hidden insights.</p>
                         </div>
                         
@@ -988,3 +1003,4 @@
 
 </body>
 </html>
+
