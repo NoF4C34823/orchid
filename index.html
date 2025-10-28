@@ -8,25 +8,40 @@
     <style>
         /* Base font */
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-            background-color: #f8fafc; /* Light gray background */
+            /* Using Inter font from aboutus.html for a modern feel */
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            /* Applying dark theme from aboutus.html to the whole body */
+            background-color: var(--brand-dark);
+            color: var(--brand-grey);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* ESCOSS Brand Colors */
+        /* * UNIFIED ESCOSS Brand Colors (Based on aboutus.html)
+         * This creates a consistent dark theme.
+         */
         :root {
-            --brand-dark: #0f1a2a;
-            --brand-accent: #00d1ff;
-            --brand-accent-dark: #00a9d1;
+            --brand-dark: #0a192f;  /* Deep Navy */
+            --brand-dark-lighter: #112240; /* Slightly lighter navy for cards */
+            --brand-accent: #00d1b2; /* Bright Teal/Mint */
+            --brand-grey: #a8b2d1;  /* Light Slate / Main text color */
+            --brand-light-grey: #ccd6f6; /* Lighter Slate / Headings */
         }
 
         .bg-brand-dark { background-color: var(--brand-dark); }
         .text-brand-accent { color: var(--brand-accent); }
         .border-brand-accent { border-color: var(--brand-accent); }
+        .text-brand-grey { color: var(--brand-grey); }
+        .text-brand-light-grey { color: var(--brand-light-grey); }
+        .bg-brand-dark-lighter { background-color: var(--brand-dark-lighter); }
+
 
         /* Navigation Styling */
         .nav-link {
             transition: all 0.3s ease;
             border-bottom: 4px solid transparent;
+            padding-top: 0.75rem; /* Extra padding for hover effect */
+            padding-bottom: 0.75rem;
         }
         .nav-link.active {
             color: var(--brand-accent);
@@ -34,7 +49,17 @@
         }
         .nav-link:not(.active):hover {
             color: white;
+            transform: translateY(-2px);
             border-bottom-color: #4b5563; /* Gray hover */
+        }
+        
+        /* Header Logo Hover */
+        header .logo-img {
+            transition: all 0.3s ease;
+        }
+        header .logo-img:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 8px rgba(0, 209, 178, 0.7));
         }
 
         /* Page Content Styling */
@@ -49,7 +74,7 @@
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
@@ -71,12 +96,16 @@
             opacity: 0; /* Start hidden */
         }
 
-        /* Staggered animation delays */
+        /* Staggered animation delays (Added more for flexibility) */
         .delay-100 { animation-delay: 0.1s; }
         .delay-200 { animation-delay: 0.2s; }
         .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
         .delay-500 { animation-delay: 0.5s; }
+        .delay-600 { animation-delay: 0.6s; }
         .delay-700 { animation-delay: 0.7s; }
+        .delay-800 { animation-delay: 0.8s; }
+        .delay-900 { animation-delay: 0.9s; }
         .delay-1000 { animation-delay: 1s; }
 
         /* Animated Flowchart Arrow */
@@ -90,36 +119,34 @@
                 transform: scale(1.05);
             }
         }
-        .flow-arrow {
-            font-size: 4rem;
-            color: var(--brand-accent);
-            animation: pulse-arrow 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-        
         .flow-arrow-down {
             font-size: 4rem;
             color: var(--brand-accent);
             animation: pulse-arrow 2.5s 0.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
 
-        /* Card styles for features */
+        /* * UNIFIED Feature Card Styling (Dark Mode)
+         * Replaces both light and dark card styles for consistency.
+         */
         .feature-card {
-            background-color: white;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-            border: 1px solid #e5e7eb;
+            background-color: var(--brand-dark-lighter); /* #112240 */
+            border: 1px solid #1f3a61;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
             transition: all 0.3s ease;
+            overflow: hidden;
+            height: 100%; /* Makes cards in a grid the same height */
         }
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 209, 255, 0.1), 0 4px 6px -2px rgba(0, 209, 255, 0.05);
+         .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 209, 178, 0.15), 0 5px 10px rgba(0, 209, 178, 0.1);
         }
-        
+
         /* Highlight for the Central Hub */
         .hub-card {
             border-width: 4px;
             border-color: var(--brand-accent);
-            box-shadow: 0 0 25px 5px rgba(0, 209, 255, 0.25);
+            box-shadow: 0 0 35px 5px rgba(0, 209, 178, 0.4);
         }
 
         /* Step Circle for Process */
@@ -132,10 +159,10 @@
             justify-content: center;
             font-size: 2rem;
             font-weight: 700;
-            background-color: var(--brand-dark);
+            background-color: var(--brand-dark-lighter);
             color: var(--brand-accent);
             border: 4px solid var(--brand-accent);
-            box-shadow: 0 0 15px rgba(0, 209, 255, 0.3);
+            box-shadow: 0 0 15px rgba(0, 209, 178, 0.3);
         }
         
         /* Dashed line for process */
@@ -148,18 +175,72 @@
             left: 0;
             top: 2.25rem;
             z-index: -1;
+            opacity: 0.5;
+        }
+
+        /* Glowing Pulse Animation (from aboutus.html) */
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 35px 5px rgba(0, 209, 178, 0.7), 0 0 15px rgba(0, 209, 178, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 50px 10px rgba(0, 209, 178, 0.9), 0 0 25px rgba(0, 209, 178, 0.7);
+            }
+        }
+        
+        /* Pulse for Highlighted Service Card (from aboutus.html) */
+        .highlight-card-pulse {
+             box-shadow: 0 0 20px rgba(0, 209, 178, 0.5);
+             animation: pulse-glow 3.5s infinite ease-in-out;
+        }
+
+        /* Dashboard Image Preview Style */
+        .dashboard-preview {
+            border-radius: 0.5rem;
+            border: 2px solid #1f3a61;
+            box-shadow: 0 0 30px 5px rgba(0, 209, 178, 0.2);
+            transition: all 0.3s ease;
+        }
+        .dashboard-preview:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 40px 8px rgba(0, 209, 178, 0.3);
+        }
+        
+        /* Capability Badges - Dark Mode */
+        .capability-badge {
+            display: inline-block;
+            background-color: var(--brand-dark-lighter);
+            color: var(--brand-accent);
+            border: 1px solid var(--brand-accent);
+            font-semibold: 600;
+            padding: 0.25rem 1rem;
+            border-radius: 9999px;
+            margin-bottom: 0.75rem;
+            font-size: 0.875rem;
+        }
+
+        /* Code Block Styling */
+        .code-snippet {
+            background-color: var(--brand-dark);
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--brand-light-grey);
+            border: 1px solid #1f3a61;
+            display: inline-block; /* Make it wrap content */
+            margin-top: 0.25rem;
         }
     </style>
 </head>
-<body class="bg-gray-100">
+<body class="bg-brand-dark">
 
     <!-- Header & Multi-Page Navigation -->
-    <header class="bg-brand-dark sticky top-0 z-50 shadow-lg">
+    <header class="bg-brand-dark sticky top-0 z-50 shadow-lg border-b border-gray-800">
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <!-- Logo -->
                 <div class="flex-shrink-0">
-                    <img class="h-10" src="https://mocha-cdn.com/019996e8-7be2-7e2c-b600-d534cf191d41/logo_escoss.png" alt="ESCOSS Logo">
+                    <img class="h-10 logo-img cursor-pointer" src="https://mocha-cdn.com/019996e8-7be2-7e2c-b600-d534cf191d41/logo_escoss.png" alt="ESCOSS Logo" onclick="window.location.reload()">
                 </div>
                 
                 <!-- Desktop Navigation -->
@@ -171,6 +252,8 @@
                         <button class="nav-link text-gray-300 px-3 py-2 text-sm font-medium" data-target="dashboard">Your Mission Control</button>
                         <button class="nav-link text-gray-300 px-3 py-2 text-sm font-medium" data-target="process">Our Simple Process</button>
                         <button class="nav-link text-gray-300 px-3 py-2 text-sm font-medium" data-target="benefits">Core Benefits</button>
+                        <!-- ADDED "ABOUT US" LINK -->
+                        <button class="nav-link text-gray-300 px-3 py-2 text-sm font-medium" data-target="about">About Us</button>
                     </div>
                 </div>
 
@@ -199,6 +282,8 @@
                     <button class="nav-link text-gray-300 block px-3 py-2 rounded-md text-base font-medium w-full text-left" data-target="dashboard">Your Mission Control</button>
                     <button class="nav-link text-gray-300 block px-3 py-2 rounded-md text-base font-medium w-full text-left" data-target="process">Our Simple Process</button>
                     <button class="nav-link text-gray-300 block px-3 py-2 rounded-md text-base font-medium w-full text-left" data-target="benefits">Core Benefits</button>
+                    <!-- ADDED "ABOUT US" LINK (MOBILE) -->
+                    <button class="nav-link text-gray-300 block px-3 py-2 rounded-md text-base font-medium w-full text-left" data-target="about">About Us</button>
                 </div>
             </div>
         </nav>
@@ -211,18 +296,19 @@
                 <div class="container mx-auto px-6 py-24 md:py-32 lg:py-40 relative z-10">
                     <div class="flex flex-col lg:flex-row items-center justify-between max-w-6xl mx-auto text-center lg:text-left">
                         <div class="lg:w-2/3">
-                            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6 fade-in-up">
+                            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6 fade-in-up text-brand-light-grey">
                                 Your New Security & Activity Shield
                             </h1>
-                            <p class="text-xl md:text-2xl text-gray-300 mb-10 fade-in-up delay-200">
+                            <p class="text-xl md:text-2xl text-brand-grey mb-10 fade-in-up delay-200">
                                 A complete solution giving <span class="text-brand-accent font-semibold">Orchid Scientific</span> full visibility and control over all digital file activity and computer operations.
                             </p>
                         </div>
                         <div class="lg:w-1/3 flex justify-center lg:justify-end fade-in-up delay-300 mt-8 lg:mt-0">
+                            <!-- Kept white background for logo visibility -->
                             <img src="https://i.ibb.co/0jrz120R/Screenshot-2025-10-28-030507.png" alt="Orchid Scientific Logo" class="bg-white rounded-full p-4 shadow-2xl w-48 h-48 md:w-60 md:h-60">
                         </div>
                     </div>
-                    <p class="text-lg text-gray-400 max-w-4xl mx-auto fade-in-up delay-500 mt-12 text-center">
+                    <p class="text-lg text-brand-grey max-w-4xl mx-auto fade-in-up delay-500 mt-12 text-center">
                         In today's digital world, knowing what's happening with your sensitive data isn't just an option—it's a necessity. This presentation outlines our plan to build a powerful, yet simple, "Mission Control" center for Orchid Scientific, allowing you to see everything that happens on your network in real time.
                     </p>
                 </div>
@@ -233,74 +319,77 @@
 
         <!-- Page 2: How It Works -->
         <section class="page-content" id="overview">
-            <div class="container mx-auto px-6 py-20 md:py-28">
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 fade-in-up">The Grand Overview: How It All Works</h2>
-                    <p class="text-lg text-gray-600 fade-in-up delay-100">
-                        We're not just installing software; we're building an intelligent, connected ecosystem. Here is a simple, non-technical diagram showing how all the pieces fit together.
-                    </p>
-                </div>
-
-                <!-- Animated Flowchart -->
-                <div class="flex flex-col items-center space-y-8">
-                    
-                    <!-- Top Row: Data Sources -->
-                    <div class="text-center">
-                        <h3 class="text-2xl font-semibold text-gray-700 mb-6 fade-in-up delay-200">1. Your Activity Sources</h3>
+            <div class="bg-brand-dark"> <!-- Dark background -->
+                <div class="container mx-auto px-6 py-20 md:py-28">
+                    <div class="text-center max-w-3xl mx-auto mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-brand-light-grey mb-4 fade-in-up">The Grand Overview: How It All Works</h2>
+                        <p class="text-lg text-brand-grey fade-in-up delay-100">
+                            We're not just installing software; we're building an intelligent, connected ecosystem. Here is a simple, non-technical diagram showing how all the pieces fit together.
+                        </p>
                     </div>
-                    <div class="flex flex-col md:flex-row justify-center gap-8 w-full max-w-6xl">
-                        <!-- Box 1: PCs -->
-                        <div class="feature-card flex-1 p-6 text-center fade-in-up delay-300">
-                            <svg class="w-16 h-16 mx-auto text-brand-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                            <h4 class="text-xl font-semibold mb-2">30 Employee PCs (Beta)</h4>
-                            <p class="text-gray-600">
-                                Tiny, silent "helpers" will be placed on each PC. They invisibly note all important activity: logins, local file changes, website visits, and new software.
-                            </p>
+
+                    <!-- Animated Flowchart -->
+                    <div class="flex flex-col items-center space-y-8">
+                        
+                        <!-- Top Row: Data Sources -->
+                        <div class="text-center">
+                            <h3 class="text-2xl font-semibold text-brand-light-grey mb-6 fade-in-up delay-200">1. Your Activity Sources</h3>
+                        </div>
+                        <div class="flex flex-col md:flex-row justify-center gap-8 w-full max-w-6xl">
+                            <!-- Box 1: PCs -->
+                            <div class="feature-card flex-1 p-6 text-center fade-in-up delay-300">
+                                <svg class="w-16 h-16 mx-auto text-brand-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                <h4 class="text-xl font-semibold mb-2 text-brand-light-grey">30 Employee PCs (Beta)</h4>
+                                <p class="text-brand-grey">
+                                    Tiny, silent "helpers" will be placed on each PC. They invisibly note all important activity: logins, local file changes, website visits, and new software.
+                                </p>
+                            </div>
+                            
+                            <!-- Box 2: NAS -->
+                            <div class="feature-card flex-1 p-6 text-center fade-in-up delay-500">
+                                <svg class="w-16 h-16 mx-auto text-brand-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path></svg>
+                                <h4 class="text-xl font-semibold mb-2 text-brand-light-grey">2 NAS File Servers</h4>
+                                <p class="text-brand-grey">
+                                    Your main file servers will be configured to send a secure "note" to the Central Hub every time a shared file is accessed, modified, or deleted.
+                                </p>
+                            </div>
                         </div>
                         
-                        <!-- Box 2: NAS -->
-                        <div class="feature-card flex-1 p-6 text-center fade-in-up delay-500">
-                            <svg class="w-16 h-16 mx-auto text-brand-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path></svg>
-                            <h4 class="text-xl font-semibold mb-2">2 NAS File Servers</h4>
-                            <p class="text-gray-600">
-                                Your main file servers will be configured to send a secure "note" to the Central Hub every time a shared file is accessed, modified, or deleted.
-                            </p>
+                        <!-- Arrow Down -->
+                        <div class="flex-1 text-center fade-in-up delay-700">
+                            <div class="flow-arrow-down">↓</div>
+                            <p class="text-lg font-medium text-gray-500 -mt-4">All activity logs are sent securely...</p>
                         </div>
-                    </div>
-                    
-                    <!-- Arrow Down -->
-                    <div class="flex-1 text-center fade-in-up delay-700">
-                        <div class="flow-arrow-down">↓</div>
-                        <p class="text-lg font-medium text-gray-500 -mt-4">All activity logs are sent securely...</p>
-                    </div>
 
-                    <!-- Middle: Central Hub -->
-                    <div class="w-full max-w-3xl text-center">
-                        <h3 class="text-2xl font-semibold text-gray-700 mb-6 fade-in-up delay-700">2. The Secure Analysis Hub</h3>
-                        <div class="feature-card hub-card p-8 bg-white text-gray-900 shadow-2xl fade-in-up delay-1000">
-                            <svg class="w-20 h-20 mx-auto text-brand-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m-2 6h2M7 7l1.414-1.414M17 7l-1.414-1.414M7 17l1.414 1.414M17 17l-1.414 1.414M12 12c-3.314 0-6-2.686-6-6s2.686-6 6-6 6 2.686 6 6-2.686 6-6 6z"></path></svg>
-                            <h4 class="text-2xl font-bold mb-2">Your Central "Alpha" Server</h4>
-                            <p class="text-gray-700 text-lg">
-                                This is the "brain" of the entire system, built securely by ESCOSS. It runs 24/7 to collect, index, and analyze all the log data. It's the smart guard that spots patterns and flags important events.
-                            </p>
+                        <!-- Middle: Central Hub -->
+                        <div class="w-full max-w-3xl text-center">
+                            <h3 class="text-2xl font-semibold text-brand-light-grey mb-6 fade-in-up delay-700">2. The Secure Analysis Hub</h3>
+                            <div class="feature-card hub-card p-8 shadow-2xl fade-in-up delay-1000">
+                                <svg class="w-20 h-20 mx-auto text-brand-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m-2 6h2M7 7l1.414-1.414M17 7l-1.414-1.414M7 17l1.414 1.414M17 17l-1.414 1.414M12 12c-3.314 0-6-2.686-6-6s2.686-6 6-6 6 2.686 6 6-2.686 6-6 6z"></path></svg>
+                                <h4 class="text-2xl font-bold mb-2 text-white">Your Central "Alpha" Server</h4>
+                                <p class="text-brand-grey text-lg">
+                                    This is the "brain" of the entire system, built securely by ESCOSS. It runs 24/7 to collect, index, and analyze all the log data. It's the smart guard that spots patterns and flags important events.
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <!-- Arrow Down -->
-                    <div class="flex-1 text-center fade-in-up" style="animation-delay: 1.2s;">
-                        <div class="flow-arrow-down">↓</div>
-                        <p class="text-lg font-medium text-gray-500 -mt-4">...and turned into simple, clear insights.</p>
-                    </div>
+                        
+                        <!-- Arrow Down -->
+                        <div class="flex-1 text-center fade-in-up" style="animation-delay: 1.2s;">
+                            <div class="flow-arrow-down">↓</div>
+                            <p class="text-lg font-medium text-gray-500 -mt-4">...and turned into simple, clear insights.</p>
+                        </div>
 
-                    <!-- Bottom: Dashboard -->
-                    <div class="w-full max-w-3xl text-center">
-                        <h3 class="text-2xl font-semibold text-gray-700 mb-6 fade-in-up" style="animation-delay: 1.2s;">3. Your Mission Control</h3>
-                        <div class="feature-card p-8 bg-white border-2 border-green-500 fade-in-up" style="animation-delay: 1.4s;">
-                            <img src="https://i.ibb.co/0jrz120R/Screenshot-2025-10-28-030507.png" alt="Orchid Scientific Logo" class="h-20 w-20 mx-auto mb-4 bg-white rounded-full p-2 shadow-md">
-                            <h4 class="text-2xl font-bold mb-2">Orchid Scientific's Dashboard</h4>
-                            <p class="text-gray-600 text-lg">
-                                From a simple web browser on your own PC, Orchid Scientific's monitoring team can log in and see everything. All the complex data is transformed into easy-to-read charts, alerts, and reports.
-                            </p>
+                        <!-- Bottom: Dashboard -->
+                        <div class="w-full max-w-3xl text-center">
+                            <h3 class="text-2xl font-semibold text-brand-light-grey mb-6 fade-in-up" style="animation-delay: 1.2s;">3. Your Mission Control</h3>
+                            <div class="feature-card p-8 border-2 border-green-500 fade-in-up" style="animation-delay: 1.4s;">
+                                <!-- Kept white bg for logo -->
+                                <img src="https://i.ibb.co/0jrz120R/Screenshot-2025-10-28-030507.png" alt="Orchid Scientific Logo" class="h-20 w-20 mx-auto mb-4 bg-white rounded-full p-2 shadow-md">
+                                <h4 class="text-2xl font-bold mb-2 text-white">Orchid Scientific's Dashboard</h4>
+                                <p class="text-brand-grey text-lg">
+                                    From a simple web browser on your own PC, Orchid Scientific's monitoring team can log in and see everything. All the complex data is transformed into easy-to-read charts, alerts, and reports.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -309,88 +398,88 @@
 
         <!-- Page 3: Your New Capabilities -->
         <section class="page-content" id="capabilities">
-            <div class="bg-white">
-                <div class="container mx-auto px-6 py-20 md:py-28">
+            <div class="bg-brand-dark-lighter py-20 md:py-28"> <!-- Slightly lighter dark bg for contrast -->
+                <div class="container mx-auto px-6">
                     <div class="text-center max-w-3xl mx-auto mb-16">
-                        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 fade-in-up">Your New Capabilities: Full Visibility</h2>
-                        <p class="text-lg text-gray-600 fade-in-up delay-100">
+                        <h2 class="text-3xl md:text-4xl font-bold text-brand-light-grey mb-4 fade-in-up">Your New Capabilities: Full Visibility</h2>
+                        <p class="text-lg text-brand-grey fade-in-up delay-100">
                             This system provides a powerful new set of senses for Orchid Scientific. You will be able to see, track, and understand activity in three critical areas.
                         </p>
                     </div>
                     
-                    <div class="space-y-16">
+                    <div class="space-y-20">
                         <!-- Capability 1: File Monitoring -->
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                             <div class="fade-in-up delay-200">
-                                <span class="inline-block bg-blue-100 text-blue-800 text-sm font-semibold px-4 py-1 rounded-full mb-3">Capability 1</span>
-                                <h3 class="text-3xl font-bold text-gray-900 mb-4">Complete File Monitoring</h3>
-                                <p class="text-lg text-gray-600 mb-6">
+                                <span class="capability-badge">Capability 1</span>
+                                <h3 class="text-3xl font-bold text-brand-light-grey mb-4">Complete File Monitoring</h3>
+                                <p class="text-lg text-brand-grey mb-6">
                                     This is the core of the system. We are setting up a "digital watchman" for every critical file in your company, whether it's on a shared server or a local PC.
                                 </p>
                                 <div class="space-y-4">
                                     <div class="flex items-start">
                                         <svg class="w-6 h-6 text-brand-accent flex-shrink-0 mr-3 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                         <div>
-                                            <h4 class="text-xl font-semibold mb-1 text-brand-dark">What It Is:</h4>
-                                            <p class="text-gray-600">Real-time tracking of any file creation, modification, or deletion. We'll know the <span class="font-semibold">"Who, What, and When"</span> of every file change.</p>
+                                            <h4 class="text-xl font-semibold mb-1 text-white">What It Is:</h4>
+                                            <p class="text-brand-grey">Real-time tracking of any file creation, modification, or deletion. We'll know the <span class="font-semibold text-brand-light-grey">"Who, What, and When"</span> of every file change.</p>
                                         </div>
                                     </div>
                                     <div class="flex items-start">
                                         <svg class="w-6 h-6 text-brand-accent flex-shrink-0 mr-3 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                         <div>
-                                            <h4 class="text-xl font-semibold mb-1 text-brand-dark">Why It's Important for Orchid Scientific:</h4>
-                                            <p class="text-gray-600">This protects your intellectual property. It ensures that sensitive Word documents, Excel spreadsheets, and crucial drawing files are only being accessed by the right people at the right times. It also provides a full audit trail.</p>
+                                            <h4 class="text-xl font-semibold mb-1 text-white">Why It's Important for Orchid Scientific:</h4>
+                                            <p class="text-brand-grey">This protects your intellectual property. It ensures that sensitive Word documents, Excel spreadsheets, and crucial drawing files are only being accessed by the right people at the right times. It also provides a full audit trail.</p>
                                         </div>
                                     </div>
                                     <div class="flex items-start">
                                         <svg class="w-6 h-6 text-brand-accent flex-shrink-0 mr-3 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
                                         <div>
-                                            <h4 class="text-xl font-semibold mb-1 text-brand-dark">What You Will See:</h4>
-                                            <p class="text-gray-600">A simple, searchable log on your dashboard showing entries like: <br><code class="bg-gray-200 p-1 rounded text-sm">"User 'Parag' modified file 'C:\NAS-Drive\Projects\Project_X.docx' on PC 'Beta-05' at 2:19 PM"</code></p>
+                                            <h4 class="text-xl font-semibold mb-1 text-white">What You Will See:</h4>
+                                            <p class="text-brand-grey">A simple, searchable log on your dashboard showing entries like: <br><code class="code-snippet">"User 'Parag' modified file 'C:\NAS-Drive\Projects\Project_X.docx' on PC 'Beta-05' at 2:19 PM"</code></p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="text-center p-4 bg-gray-100 rounded-lg shadow-inner fade-in-up delay-300">
-                                <h4 class="text-lg font-semibold text-gray-700 mb-3">REAL DASHBOARD PREVIEW</h4>
-                                <img src="https://wazuh.com/wp-content/themes/wazuh-v3/assets/images/use-cases/fim/dashboard-real-time-monitoring.png" alt="Real Wazuh File Integrity Monitoring Dashboard" class="rounded-lg shadow-2xl border-4 border-white mx-auto">
+                            <div class="text-center p-4 bg-brand-dark rounded-lg shadow-inner fade-in-up delay-300">
+                                <h4 class="text-lg font-semibold text-brand-grey mb-3">REAL DASHBOARD PREVIEW</h4>
+                                <img src="https://wazuh.com/wp-content/themes/wazuh-v3/assets/images/use-cases/fim/dashboard-real-time-monitoring.png" alt="Real Wazuh File Integrity Monitoring Dashboard" class="dashboard-preview mx-auto">
                                 <p class="text-sm text-gray-500 mt-3">This is a real example of the File Monitoring (FIM) dashboard. Orchid Scientific will see a live feed of all file-related events, which can be filtered by user, file name, or PC.</p>
                             </div>
                         </div>
 
                         <!-- Capability 2: Full Activity Monitoring -->
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                            <div class="text-center p-4 bg-gray-100 rounded-lg shadow-inner fade-in-up delay-200 lg:order-last">
-                                <h4 class="text-lg font-semibold text-gray-700 mb-3">REAL DASHBOARD PREVIEW</h4>
-                                <img src="https://documentation.wazuh.com/current/_images/agents-preview1.png" alt="Real Wazuh Security Events Dashboard" class="rounded-lg shadow-2xl border-4 border-white mx-auto">
+                            <div class="text-center p-4 bg-brand-dark rounded-lg shadow-inner fade-in-up delay-200 lg:order-last">
+                                <h4 class="text-lg font-semibold text-brand-grey mb-3">REAL DASHBOARD PREVIEW</h4>
+                                <img src="https://documentation.wazuh.com/current/_images/agents-preview1.png" alt="Real Wazuh Security Events Dashboard" class="dashboard-preview mx-auto">
                                 <p class="text-sm text-gray-500 mt-3">This is a real view of the Security Events dashboard. Orchid Scientific will be able to see every important event, such as user logins, in one central place.</p>
                             </div>
                             <div class="fade-in-up delay-300 lg:order-first">
-                                <span class="inline-block bg-purple-100 text-purple-800 text-sm font-semibold px-4 py-1 rounded-full mb-3">Capability 2</span>
-                                <h3 class="text-3xl font-bold text-gray-900 mb-4">Full PC Activity Monitoring</h3>
-                                <p class="text-lg text-gray-600 mb-6">
+                                <span class="capability-badge">Capability 2</span>
+                                <h3 class="text-3xl font-bold text-brand-light-grey mb-4">Full PC Activity Monitoring</h3>
+                                <p class="text-lg text-brand-grey mb-6">
                                     Beyond just files, the "silent helpers" on all 30 "Beta" PCs create a complete diary of all important system events.
                                 </p>
                                 <div class="space-y-4">
                                     <div class="flex items-start">
                                         <svg class="w-6 h-6 text-brand-accent flex-shrink-0 mr-3 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                         <div>
-                                            <h4 class="text-xl font-semibold mb-1 text-brand-dark">What It Is:</h4>
-                                            <p class="text-gray-600">A detailed log of all significant user and system actions, including successful and failed logins, new software installations, and security setting changes.</p>
+                                            <h4 class="text-xl font-semibold mb-1 text-white">What It Is:</h4>
+                                            <p class="text-brand-grey">A detailed log of all significant user and system actions, including successful and failed logins, new software installations, and security setting changes.</p>
                                         </div>
                                     </div>
                                     <div class="flex items-start">
                                         <svg class="w-6 h-6 text-brand-accent flex-shrink-0 mr-3 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                         <div>
-                                            <h4 class="text-xl font-semibold mb-1 text-brand-dark">Why It's Important for Orchid Scientific:</h4>
-                                            <p class="text-gray-600">This provides accountability and security. Orchid Scientific will be able to instantly see if an unauthorized person is trying to guess a password, or if an employee installs unapproved or potentially harmful software on a company PC.</p>
+                                            <h4 class="text-xl font-semibold mb-1 text-white">Why It's Important for Orchid Scientific:</h4>
+                                            <p class="text-brand-grey">This provides accountability and security. Orchid Scientific will be able to instantly see if an unauthorized person is trying to guess a password, or if an employee installs unapproved or potentially harmful software on a company PC.</p>
                                         </div>
                                     </div>
                                     <div class="flex items-start">
                                         <svg class="w-6 h-6 text-brand-accent flex-shrink-0 mr-3 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
                                         <div>
-                                            <h4 class="text-xl font-semibold mb-1 text-brand-dark">What You Will See:</h4>
-                                            <p class="text-gray-600">Immediate alerts on your dashboard for critical events like: <br><code class="bg-gray-200 p-1 rounded text-sm">"Multiple login failures for user 'Admin' on PC 'Beta-12'"</code> or <code class="bg-gray-200 p-1 rounded text-sm">"Software 'new_game.exe' was installed on 'Beta-21'"</code></p>
+                                            <h4 class="text-xl font-semibold mb-1 text-white">What You Will See:</h4>
+                                            <p class="text-brand-grey">Immediate alerts on your dashboard for critical events like: <br><code class="code-snippet">"Multiple login failures for user 'Admin' on PC 'Beta-12'"</code> or <code class="code-snippet">"Software 'new_game.exe' was installed on 'Beta-21'"</code></p>
                                         </div>
                                     </div>
                                 </div>
@@ -400,38 +489,38 @@
                         <!-- Capability 3: Website Monitoring -->
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                             <div class="fade-in-up delay-200">
-                                <span class="inline-block bg-teal-100 text-teal-800 text-sm font-semibold px-4 py-1 rounded-full mb-3">Capability 3</span>
-                                <h3 class="text-3xl font-bold text-gray-900 mb-4">Internet & Website Visibility</h3>
-                                <p class="text-lg text-gray-600 mb-6">
+                                <span class="capability-badge">Capability 3</span>
+                                <h3 class="text-3xl font-bold text-brand-light-grey mb-4">Internet & Website Visibility</h3>
+                                <p class="text-lg text-brand-grey mb-6">
                                     The system also monitors all network traffic, giving Orchid Scientific a clear picture of what internet resources are being accessed from company computers.
                                 </p>
                                 <div class="space-y-4">
                                     <div class="flex items-start">
                                         <svg class="w-6 h-6 text-brand-accent flex-shrink-0 mr-3 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                         <div>
-                                            <h4 class="text-xl font-semibold mb-1 text-brand-dark">What It Is:</h4>
-                                            <p class="text-gray-600">A log of all outgoing network connections from each "Beta" PC. This allows you to see what websites and online services are being used.</p>
+                                            <h4 class="text-xl font-semibold mb-1 text-white">What It Is:</h4>
+                                            <p class="text-brand-grey">A log of all outgoing network connections from each "Beta" PC. This allows you to see what websites and online services are being used.</p>
                                         </div>
                                     </div>
                                     <div class="flex items-start">
                                         <svg class="w-6 h-6 text-brand-accent flex-shrink-0 mr-3 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                         <div>
-                                            <h4 class="text-xl font-semibold mb-1 text-brand-dark">Why It's Important for Orchid Scientific:</h4>
-                                            <p class="text-gray-600">This helps ensure company computers are being used for company purposes. It's also a critical security feature, as it can help identify if a PC is "calling home" to a known malicious website associated with a virus or hacker.</p>
+                                            <h4 class="text-xl font-semibold mb-1 text-white">Why It's Important for Orchid Scientific:</h4>
+                                            <p class="text-brand-grey">This helps ensure company computers are being used for company purposes. It's also a critical security feature, as it can help identify if a PC is "calling home" to a known malicious website associated with a virus or hacker.</p>
                                         </div>
                                     </div>
                                     <div class="flex items-start">
                                         <svg class="w-6 h-6 text-brand-accent flex-shrink-0 mr-3 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
                                         <div>
-                                            <h4 class="text-xl font-semibold mb-1 text-brand-dark">What You Will See:</h4>
-                                            <p class="text-gray-600">Reports and searchable logs on your dashboard showing which PCs are connecting to which websites, helping you spot unusual or non-compliant activity.</p>
+                                            <h4 class="text-xl font-semibold mb-1 text-white">What You Will See:</h4>
+                                            <p class="text-brand-grey">Reports and searchable logs on your dashboard showing which PCs are connecting to which websites, helping you spot unusual or non-compliant activity.</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="text-center p-4 bg-gray-100 rounded-lg shadow-inner fade-in-up delay-300">
-                                <h4 class="text-lg font-semibold text-gray-700 mb-3">LOG ANALYSIS PREVIEW</h4>
-                                <img src="https://wazuh.com/uploads/2024/01/security-events-ubuntu-endpoint.png" alt="Log Analysis Preview" class="rounded-lg shadow-2xl border-4 border-white mx-auto">
+                            <div class="text-center p-4 bg-brand-dark rounded-lg shadow-inner fade-in-up delay-300">
+                                <h4 class="text-lg font-semibold text-brand-grey mb-3">LOG ANALYSIS PREVIEW</h4>
+                                <img src="https://wazuh.com/uploads/2024/01/security-events-ubuntu-endpoint.png" alt="Log Analysis Preview" class="dashboard-preview mx-auto">
                                 <p class="text-sm text-gray-500 mt-3 p-4">Your dashboard will contain powerful log analysis tools, allowing Orchid Scientific to filter, search, and create reports from all the data collected—including website connections.</p>
                             </div>
                         </div>
@@ -447,30 +536,31 @@
                 <div class="container mx-auto px-6 py-20 md:py-28">
                     <div class="text-center max-w-3xl mx-auto mb-16">
                         <div class="flex items-center justify-center space-x-4 mb-4">
+                            <!-- Kept white bg for logo -->
                             <img src="https://i.ibb.co/0jrz120R/Screenshot-2025-10-28-030507.png" alt="Orchid Scientific Logo" class="bg-white rounded-full p-2 shadow-lg w-20 h-20 fade-in-up">
-                            <h2 class="text-3xl md:text-4xl font-bold fade-in-up delay-100">Your "Mission Control" Dashboard</h2>
+                            <h2 class="text-3xl md:text-4xl font-bold text-brand-light-grey fade-in-up delay-100">Your "Mission Control" Dashboard</h2>
                         </div>
-                        <p class="text-lg text-gray-300 fade-in-up delay-200">
+                        <p class="text-lg text-brand-grey fade-in-up delay-200">
                             This is where all the information comes together. We provide Orchid Scientific with a single, simple-to-use "pane of glass" to see the health and security of your entire operation. You don't need to be a tech expert to use it.
                         </p>
                     </div>
                     
-                    <div class="text-center p-4 md:p-8 bg-gray-900 rounded-lg shadow-2xl border-4 border-brand-accent fade-in-up delay-300">
+                    <div class="text-center p-4 md:p-8 bg-brand-dark-lighter rounded-lg shadow-2xl border-2 border-brand-accent fade-in-up delay-300">
                         <h3 class="text-2xl font-semibold text-brand-accent mb-6">REAL DASHBOARD PREVIEW: MAIN OVERVIEW</h3>
-                        <img src="https://documentation.wazuh.com/current/_images/agents-preview1.png" alt="Real Wazuh Main Dashboard Overview" class="rounded-lg shadow-2xl border-4 border-white mx-auto">
+                        <img src="https://documentation.wazuh.com/current/_images/agents-preview1.png" alt="Real Wazuh Main Dashboard Overview" class="dashboard-preview mx-auto">
                         
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10 text-left">
-                            <div class="bg-gray-800 p-6 rounded-lg">
+                            <div class="bg-brand-dark p-6 rounded-lg">
                                 <h4 class="text-xl font-semibold text-brand-accent mb-2">1. See All Systems</h4>
-                                <p class="text-gray-300">The "Agents" view (seen in the image) shows Orchid Scientific all 30 "Beta" PCs and the status of the NAS connections. You'll see at a glance if any system is offline or has a problem.</p>
+                                <p class="text-brand-grey">The "Agents" view (seen in the image) shows Orchid Scientific all 30 "Beta" PCs and the status of the NAS connections. You'll see at a glance if any system is offline or has a problem.</p>
                             </div>
-                            <div class="bg-gray-800 p-6 rounded-lg">
+                            <div class="bg-brand-dark p-6 rounded-lg">
                                 <h4 class="text-xl font-semibold text-brand-accent mb-2">2. Focus on What's Important</h4>
-                                <p class="text-gray-300">The main dashboard highlights the most critical alerts. Instead of digging through thousands of logs, the system brings the "need to know" information directly to your attention.</p>
+                                <p class="text-brand-grey">The main dashboard highlights the most critical alerts. Instead of digging through thousands of logs, the system brings the "need to know" information directly to your attention.</p>
                             </div>
-                            <div class="bg-gray-800 p-6 rounded-lg">
+                            <div class="bg-brand-dark p-6 rounded-lg">
                                 <h4 class="text-xl font-semibold text-brand-accent mb-2">3. Simple, Searchable Reports</h4>
-                                <p class="text-gray-300">Find any piece of information with a simple search, just like Google. Orchid Scientific can search for a user's name, a file name, or a PC name to see all related activity in seconds.</p>
+                                <p class="text-brand-grey">Find any piece of information with a simple search, just like Google. Orchid Scientific can search for a user's name, a file name, or a PC name to see all related activity in seconds.</p>
                             </div>
                         </div>
                     </div>
@@ -480,65 +570,67 @@
 
         <!-- Page 5: Our Simple Process -->
         <section class="page-content" id="process">
-            <div class="container mx-auto px-6 py-20 md:py-28">
-                <div class="text-center max-w-3xl mx-auto mb-20">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 fade-in-up">Our Simple, Non-Disruptive Process</h2>
-                    <p class="text-lg text-gray-600 fade-in-up delay-100">
-                        ESCOSS handles all the technical heavy lifting. Our rollout plan is designed to be completely seamless for Orchid Scientific, with zero downtime or interruption to your team's work.
-                    </p>
-                </div>
+            <div class="bg-brand-dark py-20 md:py-28"> <!-- Dark theme -->
+                <div class="container mx-auto px-6">
+                    <div class="text-center max-w-3xl mx-auto mb-20">
+                        <h2 class="text-3xl md:text-4xl font-bold text-brand-light-grey mb-4 fade-in-up">Our Simple, Non-Disruptive Process</h2>
+                        <p class="text-lg text-brand-grey fade-in-up delay-100">
+                            ESCOSS handles all the technical heavy lifting. Our rollout plan is designed to be completely seamless for Orchid Scientific, with zero downtime or interruption to your team's work.
+                        </p>
+                    </div>
 
-                <!-- Animated Process Timeline -->
-                <div class="relative">
-                    <!-- The connecting line -->
-                    <div class="hidden md:block process-line"></div>
+                    <!-- Animated Process Timeline -->
+                    <div class="relative">
+                        <!-- The connecting line -->
+                        <div class="hidden md:block process-line"></div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-16">
-                        
-                        <!-- Step 1 -->
-                        <div class="flex flex-col items-center text-center fade-in-up delay-200 z-10">
-                            <div class="step-circle mb-6">1</div>
-                            <h3 class="text-2xl font-semibold mb-3 text-brand-dark">Build the "Central Hub"</h3>
-                            <p class="text-gray-600">
-                                <strong class="text-gray-900">Our Responsibility:</strong> We will build and secure the "Alpha" server. This is done entirely by our team, off-site, so there is no impact on your network.
-                                <br><br>
-                                <strong class="text-gray-900">Impact on Orchid:</strong> Zero. This step is all on us.
-                            </p>
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-16">
+                            
+                            <!-- Step 1 -->
+                            <div class="flex flex-col items-center text-center fade-in-up delay-200 z-10">
+                                <div class="step-circle mb-6">1</div>
+                                <h3 class="text-2xl font-semibold mb-3 text-brand-light-grey">Build the "Central Hub"</h3>
+                                <p class="text-brand-grey">
+                                    <strong class="text-white">Our Responsibility:</strong> We will build and secure the "Alpha" server. This is done entirely by our team, off-site, so there is no impact on your network.
+                                    <br><br>
+                                    <strong class="text-white">Impact on Orchid:</strong> Zero. This step is all on us.
+                                </p>
+                            </div>
+
+                            <!-- Step 2 -->
+                            <div class="flex flex-col items-center text-center fade-in-up delay-500 z-10">
+                                <div class="step-circle mb-6">2</div>
+                                <h3 class="text-2xl font-semibold mb-3 text-brand-light-grey">Connect the File Servers</h3>
+                                <p class="text-brand-grey">
+                                    <strong class="text-white">Our Responsibility:</strong> We will work with your IT to securely connect your 2 NAS drives to the new Central Hub, telling them where to send their activity logs.
+                                    <br><br>
+                                    <strong class="text-white">Impact on Orchid:</strong> Minimal. This is a simple settings change that requires no downtime.
+                                </p>
+                            </div>
+                            
+                            <!-- Step 3 -->
+                            <div class="flex flex-col items-center text-center fade-in-up delay-700 z-10">
+                                <div class="step-circle mb-6">3</div>
+                                <h3 class="text-2xl font-semibold mb-3 text-brand-light-grey">Deploy "Silent Helpers"</h3>
+                                <p class="text-brand-grey">
+                                    <strong class="text-white">Our Responsibility:</strong> We will quickly and silently install the "Beta" agent on all 30 employee PCs. This can be done in the background.
+                                    <br><br>
+                                    <strong class="text-white">Impact on Orchid:</strong> Zero. Your team will not see or feel anything. The agents are lightweight and start automatically.
+                                </p>
+                            </div>
+
+                            <!-- Step 4 -->
+                            <div class="flex flex-col items-center text-center fade-in-up delay-1000 z-10">
+                                <div class="step-circle mb-6">4</div>
+                                <h3 class="text-2xl font-semibold mb-3 text-brand-light-grey">Go-Live & Training</h3>
+                                <p class="text-brand-grey">
+                                    <strong class="text-white">Our Responsibility:</strong> We will hand over the "keys" to the Mission Control dashboard and provide a simple training session for your monitoring team.
+                                    <br><br>
+                                    <strong class="text-white">Impact on Orchid:</strong> This is where you get the power! You will immediately be able to see all the data flowing in.
+                                </p>
+                            </div>
+
                         </div>
-
-                        <!-- Step 2 -->
-                        <div class="flex flex-col items-center text-center fade-in-up delay-500 z-10">
-                            <div class="step-circle mb-6">2</div>
-                            <h3 class="text-2xl font-semibold mb-3 text-brand-dark">Connect the File Servers</h3>
-                            <p class="text-gray-600">
-                                <strong class="text-gray-900">Our Responsibility:</strong> We will work with your IT to securely connect your 2 NAS drives to the new Central Hub, telling them where to send their activity logs.
-                                <br><br>
-                                <strong class="text-gray-900">Impact on Orchid:</strong> Minimal. This is a simple settings change that requires no downtime.
-                            </p>
-                        </div>
-                        
-                        <!-- Step 3 -->
-                        <div class="flex flex-col items-center text-center fade-in-up delay-700 z-10">
-                            <div class="step-circle mb-6">3</div>
-                            <h3 class="text-2xl font-semibold mb-3 text-brand-dark">Deploy "Silent Helpers"</h3>
-                            <p class="text-gray-600">
-                                <strong class="text-gray-900">Our Responsibility:</strong> We will quickly and silently install the "Beta" agent on all 30 employee PCs. This can be done in the background.
-                                <br><br>
-                                <strong class="text-gray-900">Impact on Orchid:</strong> Zero. Your team will not see or feel anything. The agents are lightweight and start automatically.
-                            </p>
-                        </div>
-
-                        <!-- Step 4 -->
-                        <div class="flex flex-col items-center text-center fade-in-up delay-1000 z-10">
-                            <div class="step-circle mb-6">4</div>
-                            <h3 class="text-2xl font-semibold mb-3 text-brand-dark">Go-Live & Training</h3>
-                            <p class="text-gray-600">
-                                <strong class="text-gray-900">Our Responsibility:</strong> We will hand over the "keys" to the Mission Control dashboard and provide a simple training session for your monitoring team.
-                                <br><br>
-                                <strong class="text-gray-900">Impact on Orchid:</strong> This is where you get the power! You will immediately be able to see all the data flowing in.
-                            </p>
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -546,11 +638,11 @@
 
         <!-- Page 6: Core Benefits -->
         <section class="page-content" id="benefits">
-            <div class="bg-white">
-                <div class="container mx-auto px-6 py-20 md:py-28">
+            <div class="bg-brand-dark-lighter py-20 md:py-28"> <!-- Dark theme -->
+                <div class="container mx-auto px-6">
                     <div class="text-center max-w-3xl mx-auto mb-16">
-                        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 fade-in-up">Orchid Scientific's Core Benefits</h2>
-                        <p class="text-lg text-gray-600 fade-in-up delay-100">
+                        <h2 class="text-3xl md:text-4xl font-bold text-brand-light-grey mb-4 fade-in-up">Orchid Scientific's Core Benefits</h2>
+                        <p class="text-lg text-brand-grey fade-in-up delay-100">
                             This solution is more than just a piece of technology. It's a new foundation for security and peace of mind.
                         </p>
                     </div>
@@ -560,30 +652,228 @@
                         <!-- Benefit 1 -->
                         <div class="feature-card p-8 text-center fade-in-up delay-200">
                             <svg class="w-20 h-20 mx-auto text-brand-accent mb-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                            <h3 class="text-2xl font-semibold mb-3 text-brand-dark">Completely Automatic</h3>
-                            <p class="text-gray-600 text-lg">
-                                This is a "set it and forget it" solution. Everything starts automatically when computers are turned on. There is <span class="font-semibold">no extra work</span> for any employee. The system monitors everything, 24/7, 365 days a year, all on its own.
+                            <h3 class="text-2xl font-semibold mb-3 text-brand-light-grey">Completely Automatic</h3>
+                            <p class="text-brand-grey text-lg">
+                                This is a "set it and forget it" solution. Everything starts automatically. There is <span class="font-semibold text-white">no extra work</span> for any employee. The system monitors everything, 24/7, 365 days a year, all on its own.
                             </p>
                         </div>
                         
                         <!-- Benefit 2 -->
                         <div class="feature-card p-8 text-center border-4 border-brand-accent shadow-2xl scale-105 fade-in-up delay-300">
                             <svg class="w-20 h-20 mx-auto text-brand-accent mb-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-                            <h3 class="text-2xl font-semibold mb-3 text-brand-dark">100% Private & Secure</h3>
-                            <p class="text-gray-600 text-lg">
-                                All information <span class="font-semibold">never leaves your network.</span> All logs are stored on your own "Alpha" server. The system <span class="font-semibold">does not read the *contents*</span> of your files—it only logs the *activity* (who, what, when). Orchid Scientific's data remains 100% yours.
+                            <h3 class="text-2xl font-semibold mb-3 text-brand-light-grey">100% Private & Secure</h3>
+                            <p class="text-brand-grey text-lg">
+                                All information <span class="font-semibold text-white">never leaves your network.</span> All logs are stored on your own "Alpha" server. The system <span class="font-semibold text-white">does not read the *contents*</span> of your files. Orchid Scientific's data remains 100% yours.
                             </p>
                         </div>
                         
                         <!-- Benefit 3 -->
                         <div class="feature-card p-8 text-center fade-in-up delay-500">
                             <svg class="w-20 h-20 mx-auto text-brand-accent mb-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
-                            <h3 class="text-2xl font-semibold mb-3 text-brand-dark">Simple to Use</h3>
-                            <p class="text-gray-600 text-lg">
+                            <h3 class="text-2xl font-semibold mb-3 text-brand-light-grey">Simple to Use</h3>
+                            <p class="text-brand-grey text-lg">
                                 ESCOSS handles all the complexity. For Orchid Scientific, it's just a simple, easy-to-read dashboard. You get all the power of a complex enterprise security system with none of the hassle.
                             </p>
                         </div>
                         
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+          * PAGE 7: ABOUT US
+          * Content from aboutus.html, now merged and themed.
+        -->
+        <section class="page-content" id="about">
+            <div class="bg-brand-dark text-brand-grey">
+                <div class="container mx-auto px-6 py-20 md:py-28">
+                    
+                    <!-- Founder Section -->
+                    <div class="max-w-4xl mx-auto mb-20">
+                        <div class="text-center max-w-4xl mx-auto mb-12">
+                            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 fade-in-up">Meet Our Founder</h2>
+                            <p class="text-lg text-brand-grey fade-in-up delay-100">ESCOSS is led by hands-on security expertise.</p>
+                        </div>
+                        <div class="feature-card bg-brand-dark-lighter p-8 md:p-12 rounded-lg shadow-xl fade-in-up delay-200">
+                            <div class="flex flex-col md:flex-row items-center">
+                                <div class="md:w-1/3 text-center mb-8 md:mb-0">
+                                    <svg class="w-32 h-32 md:w-48 md:h-48 mx-auto text-brand-accent rounded-full p-4 bg-brand-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    <h3 class="text-2xl font-bold text-white mt-4">Saumitra Kulkarni</h3>
+                                    <p class="text-lg font-semibold text-brand-accent">CEO & Founder</p>
+                                </div>
+                                <div class="md:w-2/3 md:pl-12">
+                                    <h4 class="text-xl font-semibold text-white mb-3">Certified Cyber Security Professional</h4>
+                                    <p class="text-brand-grey text-lg mb-4">
+                                        Saumitra founded ESCOSS with a singular vision: to build digital solutions that are secure from the very first line of code. With extensive, hands-on experience in penetration testing, ethical hacking, and secure network architecture, he leads a team dedicated to protecting your data, not just monitoring it.
+                                    </p>
+                                    <p class="text-brand-grey text-lg">
+                                        His expertise ensures that every project, from security monitoring to application development, is built on a foundation of elite, real-world security practices.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Services Section -->
+                    <div class="text-center max-w-4xl mx-auto mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 fade-in-up">Our Core Capabilities</h2>
+                        <p class="text-lg text-brand-grey fade-in-up delay-100">
+                            Beyond monitoring, we build secure, high-performance applications from the ground up.
+                        </p>
+                    </div>
+                    
+                    <!-- Highlighted Service -->
+                    <div class="max-w-4xl mx-auto mb-16 fade-in-up delay-200">
+                        <div class="feature-card bg-brand-dark-lighter p-8 md:p-12 text-center border-4 border-brand-accent shadow-2xl scale-105 highlight-card-pulse">
+                            <svg class="w-20 h-20 mx-auto text-brand-accent mb-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.5 9.5l.01.01"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.5 14.5l.01.01"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v2.309c0 .285.112.559.311.758l1.077 1.077a1.07 1.07 0 01.311.758V10m0 4v2.309c0 .285-.112.559-.311.758l-1.077 1.077a1.07 1.07 0 01-.311.758V21"></path></svg>
+                            <h3 class="text-2xl md:text-3xl font-bold text-brand-accent mb-3">Secure Application Development</h3>
+                            <p class="text-brand-grey text-lg max-w-2xl mx-auto">
+                                This is our specialty. We don't just add security at the end; we build it into the DNA of your application. From initial design to final deployment, every step is guided by a "security-first" development lifecycle to create software that is robust, efficient, and hardened against threats.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Other Services -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+                        
+                        <div class="feature-card bg-brand-dark-lighter p-6 text-center fade-in-up delay-300">
+                            <svg class="w-16 h-16 mx-auto text-brand-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m-2 6h2M7 7l1.414-1.414M17 7l-1.414-1.414M7 17l1.414 1.414M17 17l-1.414 1.414M12 12c-3.314 0-6-2.686-6-6s2.686-6 6-6 6 2.686 6 6-2.686 6-6 6z"></path></svg>
+                            <h4 class="text-xl font-semibold mb-2 text-brand-accent">ML-Based Applications</h4>
+                            <p class="text-brand-grey">Building intelligent systems that learn from your data to automate tasks and find hidden insights.</p>
+                        </div>
+                        
+                        <div class="feature-card bg-brand-dark-lighter p-6 text-center fade-in-up delay-400">
+                            <svg class="w-16 h-16 mx-auto text-brand-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h5a3 3 0 013 3v1"></path></svg>
+                            <h4 class="text-xl font-semibold mb-2 text-brand-accent">React</h4>
+                            <p class="text-brand-grey">Creating fast, modern, and responsive user interfaces for web and mobile applications.</p>
+                        </div>
+
+                        <div class="feature-card bg-brand-dark-lighter p-6 text-center fade-in-up delay-500">
+                            <svg class="w-16 h-16 mx-auto text-brand-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                            <h4 class="text-xl font-semibold mb-2 text-brand-accent">C++</h4>
+                            <p class="text-brand-grey">Developing high-performance, system-level software where speed and reliability are critical.</p>
+                        </div>
+
+                        <div class="feature-card bg-brand-dark-lighter p-6 text-center fade-in-up delay-600">
+                            <svg class="w-16 h-16 mx-auto text-brand-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <h4 class="text-xl font-semibold mb-2 text-brand-accent">.NET</h4>
+                            <p class="text-brand-grey">Engineering robust, enterprise-grade applications and web services on the Microsoft platform.</p>
+                        </div>
+
+                        <div class="feature-card bg-brand-dark-lighter p-6 text-center fade-in-up delay-700">
+                            <svg class="w-16 h-16 mx-auto text-brand-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <h4 class="text-xl font-semibold mb-2 text-brand-accent">Python</h4>
+                            <p class="text-brand-grey">Versatile development for data science, scripting, automation, and back-end systems.</p>
+                        </div>
+                    </div>
+
+                    <!-- New Comprehensive Security Services Section -->
+                    <div class="text-center max-w-4xl mx-auto mt-28 mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 fade-in-up">Our Comprehensive Security Services</h2>
+                        <p class="text-lg text-brand-grey fade-in-up delay-100">
+                            We provide end-to-end cyber security solutions to protect your organization from every angle.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        
+                        <!-- Service 1: Penetration Testing -->
+                        <div class="feature-card bg-brand-dark-lighter p-8 text-left flex flex-col justify-between fade-in-up delay-200">
+                            <div>
+                                <svg class="w-16 h-16 text-brand-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path><path d="M12 11.2V11"></path></svg>
+                                <h4 class="text-xl font-bold mb-1 text-brand-accent">Penetration Testing</h4>
+                                <p class="text-sm font-semibold text-brand-accent opacity-75 mb-3">Web, Mobile, Network, Cloud</p>
+                                <p class="text-brand-grey mb-4">Simulate real-world attacks to uncover vulnerabilities before malicious actors do.</p>
+                                <ul class="space-y-2 text-brand-grey text-sm list-inside mb-6">
+                                    <li class="flex items-center fade-in-up delay-300"><svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Web Application Testing</li>
+                                    <li class="flex items-center fade-in-up delay-400"><svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Mobile App Security</li>
+                                    <li class="flex items-center fade-in-up delay-500"><svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Network Infrastructure</li>
+                                    <li class="flex items-center fade-in-up delay-600"><svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Cloud Environment Assessment</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Service 2: Vulnerability Assessment -->
+                        <div class="feature-card bg-brand-dark-lighter p-8 text-left flex flex-col justify-between fade-in-up delay-300">
+                            <div>
+                                <svg class="w-16 h-16 text-brand-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 10l.01.01"></path></svg>
+                                <h4 class="text-xl font-bold mb-1 text-brand-accent">Vulnerability Assessment</h4>
+                                <p class="text-sm font-semibold text-brand-accent opacity-75 mb-3">Comprehensive Security Audits</p>
+                                <p class="text-brand-grey mb-4">Identify and prioritize weaknesses in your systems before attackers exploit them.</p>
+                                <ul class="space-y-2 text-brand-grey text-sm list-inside mb-6">
+                                    <li class="flex items-center fade-in-up delay-400"><svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Automated Scanning</li>
+                                    <li class="flex items-center fade-in-up delay-500"><svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Manual Verification</li>
+                                    <li class="flex items-center fade-in-up delay-600"><svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Risk Prioritization</li>
+                                    <li class="flex items-center fade-in-up delay-700"><svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Remediation Guidance</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Service 3: Red Team Engagements -->
+                        <div class="feature-card bg-brand-dark-lighter p-8 text-left flex flex-col justify-between fade-in-up delay-400">
+                            <div>
+                                <svg class="w-16 h-16 text-brand-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"></path></svg>
+                                <h4 class="text-xl font-bold mb-1 text-brand-accent">Red Team Engagements</h4>
+                                <p class="text-sm font-semibold text-brand-accent opacity-75 mb-3">Advanced Adversary Simulation</p>
+                                <p class="text-brand-grey mb-4">Advanced adversary simulations to test your organization's security posture.</p>
+                                <ul class="space-y-2 text-brand-grey text-sm list-inside mb-6">
+                                    <li class="flex items-center fade-in-up delay-500"><svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Social Engineering</li>
+                                    <li class="flex items-center fade-in-up delay-600"><svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Physical Security</li>
+                                    <li class="flex items-center fade-in-up delay-700"><svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Advanced Persistent Threats</li>
+                                    <li class="flex items-center fade-in-up delay-800"><svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Full Kill Chain Simulation</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Service 4: Incident Response & Digital Forensics -->
+                        <div class="feature-card bg-brand-dark-lighter p-8 text-left flex flex-col justify-between fade-in-up delay-200">
+                            <div>
+                                <svg class="w-16 h-16 text-brand-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                <h4 class="text-xl font-bold mb-1 text-brand-accent">Incident Response & Forensics</h4>
+                                <p class="text-sm font-semibold text-brand-accent opacity-75 mb-3">Breach Investigation & Recovery</p>
+                                <p class="text-brand-grey mb-4">Contain, analyze, and resolve security breaches quickly and effectively.</p>
+                                <ul class="space-y-2 text-brand-grey text-sm list-inside mb-6">
+                                    <li class="flex items-center fade-in-up delay-300"><svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>24/7 Emergency Response</li>
+                                    <li class="flex items-center fade-in-up delay-400"><svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Digital Evidence Collection</li>
+                                    <li class="flex items-center fade-in-up delay-500"><svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Malware Analysis</li>
+                                    <li class="flex items-center fade-in-up delay-600"><svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Recovery Planning</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Service 5: Managed Security Services -->
+                        <div class="feature-card bg-brand-dark-lighter p-8 text-left flex flex-col justify-between fade-in-up delay-300">
+                            <div>
+                                <svg class="w-16 h-16 text-brand-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <h4 class="text-xl font-bold mb-1 text-brand-accent">Managed Security Services</h4>
+                                <p class="text-sm font-semibold text-brand-accent opacity-75 mb-3">Continuous Protection</p>
+                                <p class="text-brand-grey mb-4">Continuous monitoring, threat hunting, and SIEM integration for proactive defense.</p>
+                                <ul class="space-y-2 text-brand-grey text-sm list-inside mb-6">
+                                    <li class="flex items-center fade-in-up delay-400"><svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>24/7 SOC Monitoring</li>
+                                    <li class="flex items-center fade-in-up delay-500"><svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Threat Intelligence</li>
+                                    <li class="flex items-center fade-in-up delay-600"><svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>SIEM Management</li>
+                                    <li class="flex items-center fade-in-up delay-700"><svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Incident Escalation</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Service 6: Application Security & Secure Code Review -->
+                        <div class="feature-card bg-brand-dark-lighter p-8 text-left flex flex-col justify-between fade-in-up delay-400">
+                            <div>
+                                <svg class="w-16 h-16 text-brand-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                                <h4 class="text-xl font-bold mb-1 text-brand-accent">Application Security</h4>
+                                <p class="text-sm font-semibold text-brand-accent opacity-75 mb-3">Secure Development</p>
+                                <p class="text-brand-grey mb-4">Protect applications against logic flaws, injections, and other vulnerabilities.</p>
+                                <ul class="space-y-2 text-brand-grey text-sm list-inside mb-6">
+                                    <li class="flex items-center fade-in-up delay-500"><svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Static Code Analysis</li>
+                                    <li class="flex items-center fade-in-up delay-600"><svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Dynamic Testing</li>
+                                    <li class="flex items-center fade-in-up delay-700"><svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Secure Architecture Review</li>
+                                    <li class="flex items-center fade-in-up delay-800"><svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>DevSecOps Integration</li>
+                                </ul>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -595,10 +885,10 @@
         <div class="container mx-auto px-6 py-12">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
-                    <img class="h-10" src="https://mocha-cdn.com/019996e8-7be2-7e2c-b600-d534cf191d41/logo_escoss.png" alt="ESCOSS Logo">
+                    <img class="h-10 logo-img" src="https://mocha-cdn.com/019996e8-7be2-7e2c-b600-d534cf191d41/logo_escoss.png" alt="ESCOSS Logo">
                 </div>
                 <div class="text-center md:text-right">
-                    <p class="text-gray-300">Advanced Security Solutions</p>
+                    <p class="text-brand-grey">Advanced Security Solutions</p>
                     <a href="https://escoss.com" target="_blank" rel="noopener noreferrer" class="text-lg font-semibold text-brand-accent hover:text-white transition-colors">
                         escoss.com
                     </a>
@@ -623,26 +913,30 @@
                 const targetPage = document.getElementById(targetId);
                 if (targetPage) {
                     targetPage.classList.add('active');
-                    // Trigger animations by adding a class
-                    targetPage.querySelectorAll('.fade-in-up, .fade-in').forEach(el => {
-                        el.style.opacity = '0'; // Reset for re-animation
-                        // Force reflow
-                        void el.offsetWidth;
+                    
+                    // Re-trigger animations for all elements in the target page
+                    // This is the key to making it "reactive" on every click
+                    const animatedElements = targetPage.querySelectorAll('.fade-in-up, .fade-in');
+                    
+                    animatedElements.forEach(el => {
+                        // Reset animation
                         el.style.animation = 'none';
+                        el.style.opacity = '0'; // Start from invisible
+                        // Force browser reflow
+                        void el.offsetWidth;
+                        
+                        // Determine which animation to apply
+                        let animationName = 'fadeInUp';
+                        if (el.classList.contains('fade-in')) {
+                            animationName = 'fadeIn';
+                        }
+                        
+                        // Get delay
+                        const delayClass = Array.from(el.classList).find(c => c.startsWith('delay-'));
+                        const delay = delayClass ? `${parseInt(delayClass.split('-')[1])}ms` : '0s';
+
                         // Re-apply animation
-                        setTimeout(() => {
-                           if (el.classList.contains('fade-in-up')) {
-                               el.style.animation = 'fadeInUp 0.7s ease-out forwards';
-                           } else {
-                               el.style.animation = 'fadeIn 0.8s ease-out forwards';
-                           }
-                           // Apply delays
-                           const delayClass = Array.from(el.classList).find(c => c.startsWith('delay-'));
-                           if(delayClass) {
-                               el.style.animationDelay = `${parseInt(delayClass.split('-')[1])}ms`;
-                           }
-                           el.style.opacity = '1';
-                        }, 50); // Small delay to ensure CSS applies
+                        el.style.animation = `${animationName} 0.7s ease-out ${delay} forwards`;
                     });
                 }
                 
@@ -662,6 +956,9 @@
                     mobileMenuButton.querySelector('svg.block').classList.remove('hidden');
                     mobileMenuButton.querySelector('svg.hidden').classList.add('hidden');
                 }
+
+                // Scroll to top of page
+                window.scrollTo(0, 0);
             }
 
             // Add click listeners to all nav links (desktop and mobile)
@@ -681,12 +978,13 @@
                 mobileMenuButton.querySelector('svg.hidden').classList.toggle('hidden');
             });
             
-            // Trigger animation for the initial active page
-            switchPage('home');
+            // Trigger animation for the initial active page on load
+            // We need a slight delay to ensure fonts and styles are loaded
+            setTimeout(() => {
+                switchPage('home');
+            }, 100);
         });
     </script>
 
 </body>
 </html>
-
-
